@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Electronics - Add Customer</title>
+</head>
+<body>
+<h1>Add New Customer</h1>
+
+<form action="/customers/create" method="post" th:object="${customer}">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+    <br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+    <br>
+    <!-- Agrega más campos según las necesidades de tu Customer -->
+    <br>
+    <button type="submit">Add Customer</button>
+</form>
+
+<a th:href="@{/customers}">Back to Customers</a>
+</body>
+</html>

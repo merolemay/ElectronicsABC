@@ -1,6 +1,3 @@
-Certainly! Creating a good `README.md` file is important for providing information about your project, its structure, and how to use it. Below is a template that you can customize for your project:
-
-```markdown
 # ABC Electronics Web Application
 
 This is the source code repository for the ABC Electronics web application. The application allows users to manage customer orders and store additional information about customers in a MongoDB database.
@@ -95,7 +92,6 @@ Feel free to contribute to this project. Fork the repository, make your changes,
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
 
 Make sure to replace placeholder values like `your-username`, `abc_database`, `your_username`, `your_password`, and others with the appropriate values for your project.
 

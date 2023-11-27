@@ -1,16 +1,28 @@
 package com.ABC.Electronics.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document(collection = "additional_info")
+import java.util.HashSet;
+import java.util.Set;
+
+@AllArgsConstructor
+@Builder
+@Data
+@NoArgsConstructor
+@Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class AdditionalInfo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @jakarta.persistence.Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     private String childName;
     private String birthDate;
@@ -32,5 +44,9 @@ public class AdditionalInfo {
     private String spouseInfo;
     private String productCategoriesOfInterest;
 
-    // Getters and Setters
+
+    @OneToMany(mappedBy = "additionalInfo", cascade = CascadeType.ALL)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Customer> customers = new HashSet<>();
+
 }

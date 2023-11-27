@@ -53,13 +53,13 @@ public class CustomerController {
     }
 
     /**
-     * Endpoint to save a new customer.
+     * Endpoint to create a new customer.
      *
      * @param customer The customer to be saved.
      * @return The saved customer with a 201 Created status.
      */
     @PostMapping
-    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         Customer savedCustomer = customerService.saveCustomer(customer);
         return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
     }
@@ -69,6 +69,9 @@ public class CustomerController {
      *
      * @param customerId The ID of the customer to be updated.
      * @param customer   The updated customer information.
+     * The customer must already exist in the database.
+     * If the customer does not exist NOT_FOUND status would be returned.
+     * If the customer exists OK status would be returned.
      * @return The updated customer with a 200 OK status, or 404 Not Found if the customer does not exist.
      */
     @PutMapping("/{customerId}")
@@ -76,9 +79,9 @@ public class CustomerController {
         Customer existingCustomer = customerService.getCustomerById(customerId);
 
         if (existingCustomer != null) {
-            customer.setId(customerId); // Ensure the ID is set for the existing customer
-            Customer updatedCustomer = customerService.saveCustomer(customer);
-            return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
+            customer.setId(customerId);
+            Customer savedCustomer = customerService.saveCustomer(customer);
+            return new ResponseEntity<>(savedCustomer, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,11 +30,13 @@ public class CustomerOrderController {
     /**
      * Endpoint to retrieve all customer orders.
      *
-     * @return List of all customer orders.
+     * @return List of all customer orders with a 200 OK status code.
+     * If no customer orders exist, an empty list is returned.
+     *
      */
     @GetMapping
-    public List<CustomerOrder> getAllCustomerOrders() {
-        return customerOrderService.getAllCustomerOrders();
+    public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders() {
+        return new ResponseEntity<>(customerOrderService.getAllCustomerOrders(), HttpStatus.OK);
     }
 
     /**
@@ -59,7 +60,7 @@ public class CustomerOrderController {
      * @return The saved customer order with a 201 Created status.
      */
     @PostMapping
-    public ResponseEntity<CustomerOrder> saveCustomerOrder(@RequestBody CustomerOrder order) {
+    public ResponseEntity<CustomerOrder> createCustomerOrder(@RequestBody CustomerOrder order) {
         CustomerOrder savedOrder = customerOrderService.saveOrder(order);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
@@ -95,6 +96,7 @@ public class CustomerOrderController {
         CustomerOrder updatedOrder = customerOrderService.saveOrder(order);
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }
+
 
 
 }

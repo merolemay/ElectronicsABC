@@ -63,4 +63,19 @@ public class CustomerOrderController {
         CustomerOrder savedOrder = customerOrderService.saveOrder(order);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
+
+    /**
+     * Endpoint to delete a customer order by its ID.
+     *
+     * @param orderId The ID of the customer order.
+     * @return 204 No Content if the customer order was deleted, 404 Not Found if not found.
+     */
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<CustomerOrder> deleteCustomerOrder(@PathVariable Long orderId) {
+        if (customerOrderService.getCustomerOrderById(orderId).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        customerOrderService.deleteOrder(orderId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

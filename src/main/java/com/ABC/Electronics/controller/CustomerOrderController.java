@@ -78,4 +78,23 @@ public class CustomerOrderController {
         customerOrderService.deleteOrder(orderId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    /**
+     * Endpoint to update an existing customer order.
+     *
+     * @param orderId The ID of the customer order to be updated.
+     * @param order   The updated customer order information.
+     * @return The updated customer order with a 200 OK status, or 404 Not Found if the customer order does not exist.
+     */
+    @PutMapping("/{orderId}")
+    public ResponseEntity<CustomerOrder> updateCustomerOrder(@PathVariable Long orderId, @RequestBody CustomerOrder order) {
+        if (customerOrderService.getCustomerOrderById(orderId).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        order.setId(orderId); // Ensure the ID is set for the existing customer order
+        CustomerOrder updatedOrder = customerOrderService.saveOrder(order);
+        return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
+    }
+
+
 }

@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -29,7 +30,10 @@ public class AdditionalInfo {
     private String gender;
     private boolean studying;
     private boolean playsVideoGames;
-    private String videoGamePlatforms;
+
+    @ElementCollection
+    private Set<String> videoGamePlatforms = new HashSet<>();
+
     private String birthPlaceCity;
     private String birthPlaceState;
     private String birthPlaceCountry;

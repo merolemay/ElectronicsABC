@@ -39,6 +39,13 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+
+    @GetMapping("/viewAllCustomers")
+    public String viewAllCustomers(Model model) {
+        List<Customer> customers = getAllCustomers();
+        model.addAttribute("customers", customers);
+        return "viewAllCustomers";  // Devuelve el nombre de la plantilla Thymeleaf
+    }
     /**
      * Endpoint to retrieve all customers.
      *

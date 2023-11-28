@@ -4,6 +4,7 @@ import com.ABC.Electronics.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,16 @@ import java.util.List;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
+
+
+
+    @GetMapping("/add_customer")
+    public String showAddCustomerForm(Model model) {
+        // You can add any model attributes if needed
+        model.addAttribute("customer", new Customer());
+
+        return "add_customer"; // Assuming "add_customer.html" is your Thymeleaf template
+    }
     private final CustomerService customerService;
 
     /**

@@ -28,7 +28,7 @@ public class Customer {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "additional_info_id")
     private AdditionalInfo additionalInfo;
 

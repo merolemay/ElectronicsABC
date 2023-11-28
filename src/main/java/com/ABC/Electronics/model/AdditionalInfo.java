@@ -49,8 +49,8 @@ public class AdditionalInfo {
     private String productCategoriesOfInterest;
 
 
-    @OneToMany(mappedBy = "additionalInfo", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "additionalInfo", cascade = CascadeType.ALL)
     @JsonIdentityReference(alwaysAsId = true)
-    private Set<Customer> customers = new HashSet<>();
+    private Customer customers;
 
 }

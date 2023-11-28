@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,7 +19,8 @@ import java.util.Set;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class AdditionalInfo {
-    @jakarta.persistence.Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;

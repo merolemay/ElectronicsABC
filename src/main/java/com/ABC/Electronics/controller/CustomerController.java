@@ -90,7 +90,6 @@ public class CustomerController {
         Customer existingCustomer = customerService.getCustomerById(customerId);
 
         if (existingCustomer != null) {
-            customer.setId(customerId);
             Customer savedCustomer = customerService.saveCustomer(customer);
             return new ResponseEntity<>(savedCustomer, HttpStatus.OK);
         } else {

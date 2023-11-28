@@ -92,7 +92,6 @@ public class CustomerOrderController {
         if (customerOrderService.getCustomerOrderById(orderId).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        order.setId(orderId); // Ensure the ID is set for the existing customer order
         CustomerOrder updatedOrder = customerOrderService.saveOrder(order);
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }

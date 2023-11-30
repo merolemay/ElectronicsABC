@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ABC electronics</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/225/225932.png">
+    <link th:fragment="head" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="~{menu :: menu}">&nbsp;</div>
+<style>
+    /* Fondo negro mate en toda la página */
+    body {
+        background-color: #000;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0; /* Elimina el margen predeterminado */
+        padding: 0; /* Elimina el espacio de relleno predeterminado */
+    }
+    /* Estilo de la barra de navegación */
+    .navbar {
+        background-color: #333333; /* Color de la barra de navegación */
+        font-weight: bold;
+        width: 100%; /* Ocupa todo el ancho de la página */
+        position: fixed; /* Fija la barra de navegación en la parte superior */
+        top: 0; /* Alinea la barra de navegación en la parte superior */
+        z-index: 1; /* Coloca la barra de navegación en la parte superior */
+    }
+    .navbar a {
+        color: white;
+    }
+    /* Estilo para el contenido debajo de la barra de navegación */
+    .container {
+        margin-top: 70px; /* Espacio superior para evitar la superposición con la barra de navegación */
+        background-color: transparent; /* Fondo transparente para el contenido */
+        padding: 0; /* Elimina el espacio de relleno */
+    }
+    /* Estilo específico para el encabezado */
+    h1 {
+        font-size: 36px; /* Tamaño de la fuente */
+        color: #333; /* Color del texto (puedes cambiarlo) */
+        text-align: center; /* Alineación del texto */
+    }
+</style>
+<h1>ABC electronics</h1>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="menu">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ABC electronics</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a>
+                </li>
+
+                <li class="nav-item"><a class="nav-link"   th:href="@{/add_customer}">Customer</a></li>
+                <li class="nav-item"><a class="nav-link"  th:href="@{/orders/show}">Order</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<img src="https://i.pinimg.com/originals/81/e2/28/81e2285225282c6dc6cbca2545da669a.jpg">
+</body>
+</html>
